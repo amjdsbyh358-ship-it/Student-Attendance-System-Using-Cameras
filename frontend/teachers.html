@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>إدارة الدكاترة</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ==============================
+         القائمة الجانبية
+         ============================== -->
+
+    <aside class="sidebar">
+
+        <h2>
+            نظام الحضور
+        </h2>
+
+        <nav>
+
+            <a
+                href="index.html"
+                class="nav-item"
+            >
+                لوحة التحكم
+            </a>
+
+            <a
+                href="students.html"
+                class="nav-item"
+            >
+                الطلاب
+            </a>
+
+            <a
+                href="teachers.html"
+                class="nav-item active"
+            >
+                الدكاترة
+            </a>
+
+            <a
+                href="courses.html"
+                class="nav-item"
+            >
+                المقررات
+            </a>
+
+            <a
+                href="course_sections.html"
+                class="nav-item"
+            >
+                الشعب
+            </a>
+
+            <a
+                href="enrollments.html"
+                class="nav-item"
+            >
+                تسجيل الطلاب في الشعب
+            </a>
+
+            <a
+                href="attendance.html"
+                class="nav-item"
+            >
+                الحضور
+            </a>
+
+            <a
+                href="reports.html"
+                class="nav-item"
+            >
+                التقارير
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ==============================
+         المحتوى الرئيسي
+         ============================== -->
+
+    <main class="main-content">
+
+
+        <!-- رأس الصفحة -->
+
+        <header>
+
+            <div>
+
+                <h1>
+                    إدارة الدكاترة
+                </h1>
+
+                <p>
+                    إضافة وتعديل بيانات أعضاء هيئة التدريس
+                </p>
+
+            </div>
+
+
+            <div id="currentDate">
+                --
+            </div>
+
+        </header>
+
+
+        <!-- ==============================
+             إضافة / تعديل دكتور
+             ============================== -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 id="formTitle">
+                        إضافة دكتور جديد
+                    </h2>
+
+                    <p>
+                        أدخل بيانات الدكتور
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                id="teacherForm"
+                class="enrollment-form"
+            >
+
+                <!-- ID مخفي للتعديل -->
+
+                <input
+                    type="hidden"
+                    id="teacherId"
+                >
+
+
+                <!-- اسم الدكتور -->
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        اسم الدكتور
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        placeholder="أدخل اسم الدكتور"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- البريد الإلكتروني -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        البريد الإلكتروني
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="example@univ.edu"
+                    >
+
+                </div>
+
+
+                <!-- القسم -->
+
+                <div class="form-group">
+
+                    <label for="department">
+                        القسم
+                    </label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        placeholder="مثال: قسم تقنية المعلومات"
+                    >
+
+                </div>
+
+
+                <!-- الرسالة -->
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+
+                <!-- الأزرار -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ البيانات
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="resetForm()"
+                    >
+                        إلغاء
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ==============================
+             قائمة الدكاترة
+             ============================== -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        قائمة الدكاترة
+                    </h2>
+
+                    <p>
+                        عرض الدكاترة المسجلين في النظام
+                    </p>
+
+                </div>
+
+
+                <button
+                    onclick="loadTeachers()"
+                    class="refresh-button"
+                >
+                    تحديث
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                الاسم
+                            </th>
+
+                            <th>
+                                البريد الإلكتروني
+                            </th>
+
+                            <th>
+                                القسم
+                            </th>
+
+                            <th>
+                                الإجراءات
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="teachersTable">
+
+                        <tr>
+
+                            <td colspan="5">
+                                جاري تحميل البيانات...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="teachers.js"></script>
+
+</body>
+
+</html>

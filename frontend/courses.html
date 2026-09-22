@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>إدارة المقررات</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- القائمة الجانبية -->
+
+    <aside class="sidebar">
+
+        <h2>نظام الحضور</h2>
+
+        <nav>
+
+            <a href="index.html" class="nav-item">
+                لوحة التحكم
+            </a>
+
+            <a href="students.html" class="nav-item">
+                الطلاب
+            </a>
+
+            <a href="teachers.html" class="nav-item">
+                الدكاترة
+            </a>
+
+            <a href="courses.html" class="nav-item active">
+                المقررات
+            </a>
+
+            <a href="course_sections.html" class="nav-item">
+                الشعب
+            </a>
+
+            <a href="enrollments.html" class="nav-item">
+                تسجيل الطلاب في الشعب
+            </a>
+
+            <a href="attendance.html" class="nav-item">
+                الحضور
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                التقارير
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- المحتوى -->
+
+    <main class="main-content">
+
+        <header>
+
+            <div>
+
+                <h1>
+                    إدارة المقررات
+                </h1>
+
+                <p>
+                    إضافة وتعديل وحذف المقررات الدراسية
+                </p>
+
+            </div>
+
+            <div id="currentDate">
+                --
+            </div>
+
+        </header>
+
+
+        <!-- نموذج المقرر -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2 id="formTitle">
+                        إضافة مقرر جديد
+                    </h2>
+
+                    <p>
+                        أدخل بيانات المقرر
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="courseForm" class="enrollment-form">
+
+                <input
+                    type="hidden"
+                    id="courseId"
+                >
+
+
+                <div class="form-group">
+
+                    <label for="courseCode">
+                        رمز المقرر
+                    </label>
+
+                    <input
+                        type="text"
+                        id="courseCode"
+                        placeholder="مثال: CS101"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="courseName">
+                        اسم المقرر
+                    </label>
+
+                    <input
+                        type="text"
+                        id="courseName"
+                        placeholder="مثال: البرمجة بلغة بايثون"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="department">
+                        القسم
+                    </label>
+
+                    <input
+                        type="text"
+                        id="department"
+                        placeholder="مثال: تقنية المعلومات"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="level">
+                        المستوى
+                    </label>
+
+                    <input
+                        type="text"
+                        id="level"
+                        placeholder="مثال: المستوى الثاني"
+                    >
+
+                </div>
+
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        حفظ البيانات
+                    </button>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        onclick="resetForm()"
+                    >
+                        إلغاء
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- جدول المقررات -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        قائمة المقررات
+                    </h2>
+
+                    <p>
+                        جميع المقررات المسجلة في النظام
+                    </p>
+
+                </div>
+
+                <button
+                    onclick="loadCourses()"
+                    class="refresh-button"
+                >
+                    تحديث
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>
+                                رمز المقرر
+                            </th>
+
+                            <th>
+                                اسم المقرر
+                            </th>
+
+                            <th>
+                                القسم
+                            </th>
+
+                            <th>
+                                المستوى
+                            </th>
+
+                            <th>
+                                الإجراءات
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="coursesTable">
+
+                        <tr>
+
+                            <td colspan="6">
+                                جاري تحميل البيانات...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="courses.js"></script>
+
+</body>
+
+</html>

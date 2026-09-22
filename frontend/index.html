@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        نظام حضور الطلاب
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         القائمة الجانبية
+         ===================================== -->
+
+    <aside class="sidebar">
+
+        <h2>
+            نظام الحضور
+        </h2>
+
+
+        <nav>
+
+            <!-- لوحة التحكم -->
+
+            <a
+                href="index.html"
+                class="nav-item active"
+            >
+                لوحة التحكم
+            </a>
+
+
+            <!-- الطلاب -->
+
+            <a
+                href="students.html"
+                class="nav-item"
+            >
+                الطلاب
+            </a>
+
+
+            <!-- الدكاترة -->
+
+            <a
+                href="teachers.html"
+                class="nav-item"
+            >
+                الدكاترة
+            </a>
+
+
+            <!-- المقررات -->
+
+            <a
+                href="courses.html"
+                class="nav-item"
+            >
+                المقررات
+            </a>
+
+
+            <!-- الشعب -->
+
+            <a
+                href="course_sections.html"
+                class="nav-item"
+            >
+                الشعب
+            </a>
+
+
+            <!-- تسجيل الطلاب في الشعب -->
+
+            <a
+                href="enrollments.html"
+                class="nav-item"
+            >
+                تسجيل الطلاب في الشعب
+            </a>
+
+
+            <!-- الحضور -->
+
+            <a
+                href="attendance.html"
+                class="nav-item"
+            >
+                الحضور
+            </a>
+
+
+            <!-- التقارير -->
+
+            <a
+                href="reports.html"
+                class="nav-item"
+            >
+                التقارير
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         المحتوى الرئيسي
+         ===================================== -->
+
+    <main class="main-content">
+
+
+        <!-- رأس الصفحة -->
+
+        <header>
+
+            <div>
+
+                <h1>
+                    لوحة التحكم
+                </h1>
+
+                <p>
+                    نظام حضور الطلاب باستخدام التعرف على الوجه
+                </p>
+
+            </div>
+
+
+            <div id="currentDate">
+                --
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             الإحصائيات
+             ===================================== -->
+
+        <section class="statistics">
+
+
+            <!-- إجمالي الطلاب -->
+
+            <div class="stat-card">
+
+                <h3>
+                    إجمالي الطلاب
+                </h3>
+
+                <strong id="totalStudents">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- إجمالي الدكاترة -->
+
+            <div class="stat-card">
+
+                <h3>
+                    إجمالي الدكاترة
+                </h3>
+
+                <strong id="totalTeachers">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- إجمالي المقررات -->
+
+            <div class="stat-card">
+
+                <h3>
+                    إجمالي المقررات
+                </h3>
+
+                <strong id="totalCourses">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- إجمالي الشعب -->
+
+            <div class="stat-card">
+
+                <h3>
+                    إجمالي الشعب
+                </h3>
+
+                <strong id="totalSections">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- الحاضرون -->
+
+            <div class="stat-card">
+
+                <h3>
+                    الحاضرون اليوم
+                </h3>
+
+                <strong id="presentToday">
+                    0
+                </strong>
+
+            </div>
+
+
+            <!-- الغائبون -->
+
+            <div class="stat-card">
+
+                <h3>
+                    الغائبون اليوم
+                </h3>
+
+                <strong id="absentToday">
+                    0
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             حضور اليوم
+             ===================================== -->
+
+        <section class="content-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        حضور اليوم
+                    </h2>
+
+                    <p>
+                        سجل حضور الطلاب اليوم
+                    </p>
+
+                </div>
+
+
+                <button
+                    onclick="loadAttendance()"
+                    class="refresh-button"
+                >
+                    تحديث
+                </button>
+
+            </div>
+
+
+
+            <!-- جدول الحضور -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                رقم الطالب
+                            </th>
+
+                            <th>
+                                اسم الطالب
+                            </th>
+
+                            <th>
+                                المقرر
+                            </th>
+
+                            <th>
+                                الدكتور
+                            </th>
+
+                            <th>
+                                الشعبة
+                            </th>
+
+                            <th>
+                                التاريخ
+                            </th>
+
+                            <th>
+                                الوقت
+                            </th>
+
+                            <th>
+                                الحالة
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="attendanceTable">
+
+                        <tr>
+
+                            <td colspan="9">
+                                جاري تحميل البيانات...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- JavaScript -->
+
+    <script src="app.js"></script>
+
+
+</body>
+
+</html>
