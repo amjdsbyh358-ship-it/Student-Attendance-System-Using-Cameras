@@ -93,7 +93,6 @@ python -m http.server 5500
 من الموقع جوجل اكتب
 http://localhost:5500/students.html
 
----
 
 👨‍💻 المطور
 أمجد ماجد صبيح
